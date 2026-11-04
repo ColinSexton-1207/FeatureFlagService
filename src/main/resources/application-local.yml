@@ -1,0 +1,6 @@
+# Local development only. Matches the throwaway Postgres in compose.yaml when .env is copied from .env.example.
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/flagship
+    username: flagship
+    password: flagship

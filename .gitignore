@@ -12,9 +12,8 @@ target/
 .project
 .settings/
 
+.editorconfig
+
 # OS
 .DS_Store
 Thumbs.db
-
-
-src/
