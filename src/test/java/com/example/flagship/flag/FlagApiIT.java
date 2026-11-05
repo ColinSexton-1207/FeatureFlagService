@@ -99,14 +99,21 @@ class FlagApiIT {
     @Test
     void getReturnsWhatWasCreated() throws Exception {
         String key = uniqueKey("roundtrip");
-        String id = jsonPathString(createFlag(minimalBody(key)).andExpect(status().isCreated()), "$.id");
+        ResultActions created = createFlag(minimalBody(key)).andExpect(status().isCreated());
+        String id = jsonPathString(created, "$.id");
+        String createdAt = jsonPathString(created, "$.createdAt");
+        String updatedAt = jsonPathString(created, "$.updatedAt");
 
         mvc.perform(get("/api/v1/flags/{key}", key))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(id))
                 .andExpect(jsonPath("$.key").value(key))
                 .andExpect(jsonPath("$.name").value("Test flag"))
-                .andExpect(jsonPath("$.flagType").value("BOOLEAN"));
+                .andExpect(jsonPath("$.flagType").value("BOOLEAN"))
+                // PostgreSQL stores microseconds; the create response must not report more precision
+                // than a later read can return.
+                .andExpect(jsonPath("$.createdAt").value(createdAt))
+                .andExpect(jsonPath("$.updatedAt").value(updatedAt));
     }
 
     @Test
