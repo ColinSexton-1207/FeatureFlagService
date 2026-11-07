@@ -1,7 +1,6 @@
 package com.example.flagship.flag.application;
 
 public class FlagNotFoundException extends RuntimeException {
-
     private final String flagKey;
 
     public FlagNotFoundException(String flagKey) {

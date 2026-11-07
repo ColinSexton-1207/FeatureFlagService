@@ -9,7 +9,6 @@ import java.util.UUID;
 @Entity
 @Table(name = "environments")
 public class EnvironmentEntity {
-
     @Id
     private UUID id;
 

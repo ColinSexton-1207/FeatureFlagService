@@ -1,5 +1,6 @@
 package com.example.flagship.flag.infrastructure;
 
+import com.example.flagship.flag.domain.FlagConfigurationRules;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -65,6 +66,21 @@ public class FlagConfigurationEntity {
         c.updatedBy = actor;
 
         return c;
+    }
+
+    /** The stored client-editable state, validated as domain rules. */
+    public FlagConfigurationRules rules() {
+        return new FlagConfigurationRules(enabled, rolloutPercentage, allowUsers, denyUsers);
+    }
+
+    /** Replaces the client-editable state. The JPA {@code @Version} increments when this is flushed. */
+    public void apply(FlagConfigurationRules rules, String actor, Instant now) {
+        this.enabled = rules.enabled();
+        this.rolloutPercentage = (short) rules.rolloutPercentage();
+        this.allowUsers = new ArrayList<>(rules.allowUsers());
+        this.denyUsers = new ArrayList<>(rules.denyUsers());
+        this.updatedBy = actor;
+        this.updatedAt = now;
     }
 
     public UUID getId() { return id; }
