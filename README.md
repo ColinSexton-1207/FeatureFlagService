@@ -231,5 +231,5 @@ Every error is an RFC 9457 problem document (`application/problem+json`) with a 
 
 ### Notice
 
-- AI has been used to generate documentation such as readme's and JavaDoc comments. AI may also be used
-  for testing and debugging.
+- AI has been used to generate documentation such as readme's and JavaDoc comments. We're also utilizing AI for unit test generation.
+  - All AI work is carefully reviewed before pushing to a branch and validated. Utilizing Claude and Superpowers:Brainstorming to assist.
