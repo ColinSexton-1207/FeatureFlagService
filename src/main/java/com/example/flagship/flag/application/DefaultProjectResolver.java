@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
  */
 @Component
 class DefaultProjectResolver {
-
     private final ProjectRepository projects;
 
     DefaultProjectResolver(ProjectRepository projects) {

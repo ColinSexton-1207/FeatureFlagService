@@ -5,11 +5,9 @@ package com.example.flagship.flag.api;
  * restricted to a URL-safe, colon-free lowercase alphabet.
  */
 final class FlagKeys {
-
     static final String PATTERN = "^[a-z0-9]+(?:[-_.][a-z0-9]+)*$";
     static final String MESSAGE =
             "must be lowercase letters and digits, optionally separated by single '-', '_' or '.'";
 
-    private FlagKeys() {
-    }
+    private FlagKeys() {}
 }
