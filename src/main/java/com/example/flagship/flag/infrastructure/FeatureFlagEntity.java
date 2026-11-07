@@ -62,6 +62,20 @@ public class FeatureFlagEntity {
         this.updatedAt = now;
     }
 
+    public void updateMetadata(String name, String description, Instant now) {
+        this.name = name;
+        this.description = description;
+        this.updatedAt = now;
+    }
+
+    /** Marks the flag archived. Archiving is one-way in v1. */
+    public void archive(Instant now) {
+        this.archivedAt = now;
+        this.updatedAt = now;
+    }
+
+    public boolean isArchived() { return archivedAt != null; }
+
     public UUID getId() { return id; }
 
     public UUID getProjectId() { return projectId; }

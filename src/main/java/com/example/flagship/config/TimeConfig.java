@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 class TimeConfig {
-
     /**
      * UTC clock ticking in whole microseconds, matching PostgreSQL's timestamp precision. Without
      * this, a create response could carry nanoseconds that a later read of the same row cannot return.
